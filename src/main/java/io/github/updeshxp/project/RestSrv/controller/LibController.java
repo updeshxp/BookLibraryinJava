@@ -3,17 +3,18 @@ package io.github.updeshxp.project.RestSrv.controller;
 import io.github.updeshxp.project.RestSrv.entity.Book;
 import io.github.updeshxp.project.RestSrv.entity.Person;
 import io.github.updeshxp.project.RestSrv.service.LibraryService;
-import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.json.JSONObject;
+
 
 import java.util.HashMap;
 import java.util.List;
 
-
 @RestController
 public class LibController {
-    @Autowired private LibraryService libraryService;
+    @Autowired
+    private LibraryService libraryService;
 
     //SaveOp
     @PostMapping("/books")
@@ -94,5 +95,4 @@ public class LibController {
             res.put("status","Failed");
         return new JSONObject(res);
     }
-
 }

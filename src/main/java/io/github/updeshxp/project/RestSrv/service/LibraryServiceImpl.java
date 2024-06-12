@@ -34,7 +34,11 @@ public class LibraryServiceImpl implements LibraryService{
     //Update
     @Override
     public Book updateBook(Book book, Long givenBookId) {
-        Book bookDB = bookRepo.findById(givenBookId).get();
+        Book bookDB;
+        if(bookRepo.findById(givenBookId).isPresent())
+            bookDB = bookRepo.findById(givenBookId).get();
+        else
+            return null;
 
         if(Objects.nonNull(book.getBookName()) && !"".equalsIgnoreCase(book.getBookName())){
             bookDB.setBookName(book.getBookName());
@@ -54,7 +58,6 @@ public class LibraryServiceImpl implements LibraryService{
     @Override
     public void deleteBookById(Long givenBookId) {
         bookRepo.deleteById(givenBookId);
-
     }
 
     @Override
@@ -69,7 +72,11 @@ public class LibraryServiceImpl implements LibraryService{
 
     @Override
     public Person updatePerson(Person person, Long personId) {
-        Person personDB = personRepo.findById(personId).get();
+        Person personDB;
+        if(personRepo.findById(personId).isPresent())
+            personDB = personRepo.findById(personId).get();
+        else
+            return null;
         if(Objects.nonNull(person.getPersonName()) && !"".equalsIgnoreCase(person.getPersonName()))
             personDB.setPersonName(person.getPersonName());
 
@@ -86,8 +93,14 @@ public class LibraryServiceImpl implements LibraryService{
 
     @Override
     public Boolean borrowBookById(Long BookId, Long personId) {
-        Person personDB = personRepo.findById(personId).get();
-        Book bookDB = bookRepo.findById(BookId).get();
+        Person personDB;
+        Book bookDB;
+        if(personRepo.findById(personId).isPresent() && bookRepo.findById(BookId).isPresent()) {
+            personDB = personRepo.findById(personId).get();
+            bookDB = bookRepo.findById(BookId).get();
+        }
+        else
+            return null;
         if(null != bookDB.getIsBorrowedBy())
             return false;
         bookDB.setIsBorrowedBy(personDB);
@@ -103,7 +116,7 @@ public class LibraryServiceImpl implements LibraryService{
     public Boolean returnBookById(Long BookId, Long personId) {
         Person personDB = personRepo.findById(personId).get();
         Book bookDB = bookRepo.findById(BookId).get();
-        if(personDB != bookDB.getIsBorrowedBy())
+        if (personDB != bookDB.getIsBorrowedBy())
             return false;
         bookDB.setIsBorrowedBy(null);
         bookRepo.save(bookDB);
