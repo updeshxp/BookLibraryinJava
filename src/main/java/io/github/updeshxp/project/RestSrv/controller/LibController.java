@@ -3,9 +3,9 @@ package io.github.updeshxp.project.RestSrv.controller;
 import io.github.updeshxp.project.RestSrv.entity.Book;
 import io.github.updeshxp.project.RestSrv.entity.Person;
 import io.github.updeshxp.project.RestSrv.service.LibraryService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.json.JSONObject;
 
 
 import java.util.HashMap;
@@ -76,23 +76,23 @@ public class LibController {
 
     @PostMapping("/borrow/{bookId}/{personId}")
 
-    public JSONObject borrowBookById(@PathVariable("bookId") Long bookId, @PathVariable("personId") Long personId){
+    public HashMap<String,String> borrowBookById(@PathVariable("bookId") Long bookId, @PathVariable("personId") Long personId){
         HashMap<String,String> res = new HashMap<String, String>();
         if(libraryService.borrowBookById(bookId, personId))
             res.put("status","Success");
         else
             res.put("status","Failed");
-        return new JSONObject(res);
+        return res;
     }
 
     @PostMapping("/return/{bookId}/{personId}")
 
-    public JSONObject returnBookById(@PathVariable("bookId") Long bookId, @PathVariable("personId") Long personId){
+    public HashMap<String,String> returnBookById(@PathVariable("bookId") Long bookId, @PathVariable("personId") Long personId){
         HashMap<String,String> res = new HashMap<String, String>();
         if(libraryService.returnBookById(bookId, personId))
             res.put("status","Success");
         else
             res.put("status","Failed");
-        return new JSONObject(res);
+        return res;
     }
 }
