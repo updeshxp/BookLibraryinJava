@@ -2,6 +2,7 @@ package io.github.updeshxp.project.restsrv.dto;
 
 import java.time.Year;
 
+import io.github.updeshxp.project.restsrv.entity.Book;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,7 +10,9 @@ import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public class BookRequest {
+public class BookDto {
+
+	private Long id;
 
 	@NotBlank(message = "Title is required")
 	@Size(max = 150, message = "Title must be at most 150 characters")
@@ -31,6 +34,25 @@ public class BookRequest {
 	@NotNull(message = "Available copies are required")
 	@Min(value = 0, message = "Available copies cannot be negative")
 	private Integer availableCopies;
+
+	public static BookDto from(Book book) {
+		BookDto dto = new BookDto();
+		dto.setId(book.getId());
+		dto.setTitle(book.getTitle());
+		dto.setAuthor(book.getAuthor());
+		dto.setIsbn(book.getIsbn());
+		dto.setPublishedYear(book.getPublishedYear());
+		dto.setAvailableCopies(book.getAvailableCopies());
+		return dto;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getTitle() {
 		return title;

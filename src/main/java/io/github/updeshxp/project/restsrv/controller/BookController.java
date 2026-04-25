@@ -1,7 +1,6 @@
 package io.github.updeshxp.project.restsrv.controller;
 
-import io.github.updeshxp.project.restsrv.dto.BookRequest;
-import io.github.updeshxp.project.restsrv.dto.BookResponse;
+import io.github.updeshxp.project.restsrv.dto.BookDto;
 import io.github.updeshxp.project.restsrv.service.BookService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -28,27 +27,27 @@ public class BookController {
 	}
 
 	@GetMapping
-	public List<BookResponse> getAllBooks() {
+	public List<BookDto> getAllBooks() {
 		return bookService.getAllBooks()
 				.stream()
-				.map(BookResponse::from)
+				.map(BookDto::from)
 				.toList();
 	}
 
 	@GetMapping("/{id}")
-	public BookResponse getBookById(@PathVariable Long id) {
-		return BookResponse.from(bookService.getBookById(id));
+	public BookDto getBookById(@PathVariable Long id) {
+		return BookDto.from(bookService.getBookById(id));
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public BookResponse createBook(@Valid @RequestBody BookRequest request) {
-		return BookResponse.from(bookService.createBook(request));
+	public BookDto createBook(@Valid @RequestBody BookDto request) {
+		return BookDto.from(bookService.createBook(request));
 	}
 
 	@PutMapping("/{id}")
-	public BookResponse updateBook(@PathVariable Long id, @Valid @RequestBody BookRequest request) {
-		return BookResponse.from(bookService.updateBook(id, request));
+	public BookDto updateBook(@PathVariable Long id, @Valid @RequestBody BookDto request) {
+		return BookDto.from(bookService.updateBook(id, request));
 	}
 
 	@DeleteMapping("/{id}")

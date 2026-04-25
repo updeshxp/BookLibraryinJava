@@ -1,6 +1,6 @@
 package io.github.updeshxp.project.restsrv.service;
 
-import io.github.updeshxp.project.restsrv.dto.BookRequest;
+import io.github.updeshxp.project.restsrv.dto.BookDto;
 import io.github.updeshxp.project.restsrv.entity.Book;
 import io.github.updeshxp.project.restsrv.exception.ConflictException;
 import io.github.updeshxp.project.restsrv.exception.ResourceNotFoundException;
@@ -32,7 +32,7 @@ public class BookService {
 	}
 
 	@Transactional
-	public Book createBook(BookRequest request) {
+	public Book createBook(BookDto request) {
 		validateUniqueness(request.getTitle(), request.getAuthor(), request.getIsbn(), null);
 
 		Book book = new Book();
@@ -41,7 +41,7 @@ public class BookService {
 	}
 
 	@Transactional
-	public Book updateBook(Long id, BookRequest request) {
+	public Book updateBook(Long id, BookDto request) {
 		Book existing = getBookById(id);
 		validateUniqueness(request.getTitle(), request.getAuthor(), request.getIsbn(), id);
 
@@ -74,7 +74,7 @@ public class BookService {
 		}
 	}
 
-	private void mapRequestToBook(BookRequest request, Book book) {
+	private void mapRequestToBook(BookDto request, Book book) {
 		book.setTitle(request.getTitle().trim());
 		book.setAuthor(request.getAuthor().trim());
 		book.setIsbn(request.getIsbn().trim());
