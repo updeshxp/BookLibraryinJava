@@ -1,5 +1,6 @@
 package io.github.updeshxp.project.RestSrv.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +24,7 @@ public class Book {
     private Long bookId;
     private String bookName;
     private String bookAuthor;
+    @Column(unique = true)
     private String bookCode;
     private String bookPublisher;
 

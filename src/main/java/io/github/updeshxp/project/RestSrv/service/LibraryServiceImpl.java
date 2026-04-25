@@ -2,6 +2,7 @@ package io.github.updeshxp.project.RestSrv.service;
 
 import io.github.updeshxp.project.RestSrv.entity.Book;
 import io.github.updeshxp.project.RestSrv.entity.Person;
+import io.github.updeshxp.project.RestSrv.exception.ResourceNotFoundException;
 import io.github.updeshxp.project.RestSrv.library.BookRepo;
 import io.github.updeshxp.project.RestSrv.library.PersonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +35,8 @@ public class LibraryServiceImpl implements LibraryService{
     //Update
     @Override
     public Book updateBook(Book book, Long givenBookId) {
-        Book bookDB;
-        if(bookRepo.findById(givenBookId).isPresent())
-            bookDB = bookRepo.findById(givenBookId).get();
-        else
-            return null;
+        Book bookDB = bookRepo.findById(givenBookId)
+                .orElseThrow(() -> new ResourceNotFoundException("Book not found with id: " + givenBookId));
 
         if(Objects.nonNull(book.getBookName()) && !"".equalsIgnoreCase(book.getBookName())){
             bookDB.setBookName(book.getBookName());
@@ -72,11 +70,8 @@ public class LibraryServiceImpl implements LibraryService{
 
     @Override
     public Person updatePerson(Person person, Long personId) {
-        Person personDB;
-        if(personRepo.findById(personId).isPresent())
-            personDB = personRepo.findById(personId).get();
-        else
-            return null;
+        Person personDB = personRepo.findById(personId)
+                .orElseThrow(() -> new ResourceNotFoundException("Visitor not found with id: " + personId));
         if(Objects.nonNull(person.getPersonName()) && !"".equalsIgnoreCase(person.getPersonName()))
             personDB.setPersonName(person.getPersonName());
 
@@ -93,16 +88,14 @@ public class LibraryServiceImpl implements LibraryService{
 
     @Override
     public Boolean borrowBookById(Long BookId, Long personId) {
-        Person personDB;
-        Book bookDB;
-        if(personRepo.findById(personId).isPresent() && bookRepo.findById(BookId).isPresent()) {
-            personDB = personRepo.findById(personId).get();
-            bookDB = bookRepo.findById(BookId).get();
-        }
-        else
-            return null;
+        Person personDB = personRepo.findById(personId)
+                .orElseThrow(() -> new ResourceNotFoundException("Visitor not found with id: " + personId));
+        Book bookDB = bookRepo.findById(BookId)
+                .orElseThrow(() -> new ResourceNotFoundException("Book not found with id: " + BookId));
+
         if(null != bookDB.getIsBorrowedBy())
-            return false;
+            throw new IllegalArgumentException("Book is already borrowed by another visitor");
+
         bookDB.setIsBorrowedBy(personDB);
         bookRepo.save(bookDB);
         List<Book> borrowedBooks = personDB.getBooksList();
@@ -114,10 +107,14 @@ public class LibraryServiceImpl implements LibraryService{
 
     @Override
     public Boolean returnBookById(Long BookId, Long personId) {
-        Person personDB = personRepo.findById(personId).get();
-        Book bookDB = bookRepo.findById(BookId).get();
+        Person personDB = personRepo.findById(personId)
+                .orElseThrow(() -> new ResourceNotFoundException("Visitor not found with id: " + personId));
+        Book bookDB = bookRepo.findById(BookId)
+                .orElseThrow(() -> new ResourceNotFoundException("Book not found with id: " + BookId));
+
         if (personDB != bookDB.getIsBorrowedBy())
-            return false;
+            throw new IllegalArgumentException("Book is not borrowed by this visitor");
+
         bookDB.setIsBorrowedBy(null);
         bookRepo.save(bookDB);
         List<Book> borrowedBooks = personDB.getBooksList();
