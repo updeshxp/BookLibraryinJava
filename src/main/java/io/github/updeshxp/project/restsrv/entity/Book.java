@@ -1,5 +1,7 @@
 package io.github.updeshxp.project.restsrv.entity;
 
+import java.time.Year;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,7 +34,7 @@ public class Book {
 	private String isbn;
 
 	@Column(nullable = false)
-	private Integer publishedYear;
+	private Year publishedYear;
 
 	@Column(nullable = false)
 	private Integer availableCopies;
@@ -69,11 +71,11 @@ public class Book {
 		this.isbn = isbn;
 	}
 
-	public Integer getPublishedYear() {
+	public Year getPublishedYear() {
 		return publishedYear;
 	}
 
-	public void setPublishedYear(Integer publishedYear) {
+	public void setPublishedYear(Year publishedYear) {
 		this.publishedYear = publishedYear;
 	}
 

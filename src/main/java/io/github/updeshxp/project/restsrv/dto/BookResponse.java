@@ -1,5 +1,7 @@
 package io.github.updeshxp.project.restsrv.dto;
 
+import java.time.Year;
+
 import io.github.updeshxp.project.restsrv.entity.Book;
 
 public class BookResponse {
@@ -8,7 +10,7 @@ public class BookResponse {
 	private String title;
 	private String author;
 	private String isbn;
-	private Integer publishedYear;
+	private Year publishedYear;
 	private Integer availableCopies;
 
 	public static BookResponse from(Book book) {
@@ -54,11 +56,11 @@ public class BookResponse {
 		this.isbn = isbn;
 	}
 
-	public Integer getPublishedYear() {
+	public Year getPublishedYear() {
 		return publishedYear;
 	}
 
-	public void setPublishedYear(Integer publishedYear) {
+	public void setPublishedYear(Year publishedYear) {
 		this.publishedYear = publishedYear;
 	}
 

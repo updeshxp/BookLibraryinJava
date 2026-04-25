@@ -1,9 +1,11 @@
 package io.github.updeshxp.project.restsrv.dto;
 
-import jakarta.validation.constraints.Max;
+import java.time.Year;
+
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -23,9 +25,8 @@ public class BookRequest {
 	private String isbn;
 
 	@NotNull(message = "Published year is required")
-	@Min(value = 1000, message = "Published year must be a valid year")
-	@Max(value = 9999, message = "Published year must be a valid year")
-	private Integer publishedYear;
+	@Past(message = "Published year should be in the past")
+	private Year publishedYear;
 
 	@NotNull(message = "Available copies are required")
 	@Min(value = 0, message = "Available copies cannot be negative")
@@ -55,11 +56,11 @@ public class BookRequest {
 		this.isbn = isbn;
 	}
 
-	public Integer getPublishedYear() {
+	public Year getPublishedYear() {
 		return publishedYear;
 	}
 
-	public void setPublishedYear(Integer publishedYear) {
+	public void setPublishedYear(Year publishedYear) {
 		this.publishedYear = publishedYear;
 	}
 
