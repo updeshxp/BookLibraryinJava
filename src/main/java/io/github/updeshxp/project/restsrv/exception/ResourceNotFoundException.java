@@ -1,4 +1,4 @@
-package io.github.updeshxp.project.RestSrv.exception;
+package io.github.updeshxp.project.restsrv.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

@@ -1,4 +1,4 @@
-package io.github.updeshxp.project.RestSrv.exception;
+package io.github.updeshxp.project.restsrv.exception;
 
 import java.time.LocalDateTime;
 

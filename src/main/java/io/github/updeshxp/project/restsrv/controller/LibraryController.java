@@ -1,8 +1,8 @@
-package io.github.updeshxp.project.RestSrv.controller;
+package io.github.updeshxp.project.restsrv.controller;
 
-import io.github.updeshxp.project.RestSrv.entity.Book;
-import io.github.updeshxp.project.RestSrv.entity.Person;
-import io.github.updeshxp.project.RestSrv.service.LibraryService;
+import io.github.updeshxp.project.restsrv.entity.Book;
+import io.github.updeshxp.project.restsrv.entity.Person;
+import io.github.updeshxp.project.restsrv.service.LibraryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-public class LibController {
+public class LibraryController {
     @Autowired
     private LibraryService libraryService;
 

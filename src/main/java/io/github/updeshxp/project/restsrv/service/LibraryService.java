@@ -1,7 +1,7 @@
-package io.github.updeshxp.project.RestSrv.service;
+package io.github.updeshxp.project.restsrv.service;
 
-import io.github.updeshxp.project.RestSrv.entity.Book;
-import io.github.updeshxp.project.RestSrv.entity.Person;
+import io.github.updeshxp.project.restsrv.entity.Book;
+import io.github.updeshxp.project.restsrv.entity.Person;
 
 import java.util.List;
 

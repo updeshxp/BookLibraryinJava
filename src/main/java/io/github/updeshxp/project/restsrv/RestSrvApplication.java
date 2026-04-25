@@ -1,4 +1,4 @@
-package io.github.updeshxp.project.RestSrv;
+package io.github.updeshxp.project.restsrv;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

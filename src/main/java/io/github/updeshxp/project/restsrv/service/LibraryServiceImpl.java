@@ -1,10 +1,10 @@
-package io.github.updeshxp.project.RestSrv.service;
+package io.github.updeshxp.project.restsrv.service;
 
-import io.github.updeshxp.project.RestSrv.entity.Book;
-import io.github.updeshxp.project.RestSrv.entity.Person;
-import io.github.updeshxp.project.RestSrv.exception.ResourceNotFoundException;
-import io.github.updeshxp.project.RestSrv.library.BookRepo;
-import io.github.updeshxp.project.RestSrv.library.PersonRepo;
+import io.github.updeshxp.project.restsrv.entity.Book;
+import io.github.updeshxp.project.restsrv.entity.Person;
+import io.github.updeshxp.project.restsrv.exception.ResourceNotFoundException;
+import io.github.updeshxp.project.restsrv.repository.BookRepository;
+import io.github.updeshxp.project.restsrv.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +15,10 @@ import java.util.Objects;
 public class LibraryServiceImpl implements LibraryService{
 
     @Autowired
-    private BookRepo bookRepo;
+    private BookRepository bookRepo;
 
     @Autowired
-    private PersonRepo personRepo;
+    private PersonRepository personRepo;
 
     //Save
     @Override
