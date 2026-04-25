@@ -1,9 +1,16 @@
 package io.github.updeshxp.project.restsrv.repository;
 
-import io.github.updeshxp.project.restsrv.entity.Book;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface BookRepository extends CrudRepository<Book, Long> {
+import io.github.updeshxp.project.restsrv.entity.Book;
+
+public interface BookRepository extends JpaRepository<Book, Long> {
+
+	boolean existsByIsbnIgnoreCase(String isbn);
+
+	boolean existsByIsbnIgnoreCaseAndIdNot(String isbn, Long id);
+
+	boolean existsByTitleIgnoreCaseAndAuthorIgnoreCase(String title, String author);
+
+	boolean existsByTitleIgnoreCaseAndAuthorIgnoreCaseAndIdNot(String title, String author, Long id);
 }

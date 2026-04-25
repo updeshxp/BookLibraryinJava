@@ -1,41 +1,26 @@
-package io.github.updeshxp.project.restsrv.entity;
+package io.github.updeshxp.project.restsrv.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import io.github.updeshxp.project.restsrv.entity.Book;
 
-@Entity
-@Table(
-		name = "books",
-		uniqueConstraints = {
-				@UniqueConstraint(name = "uk_book_isbn", columnNames = "isbn"),
-				@UniqueConstraint(name = "uk_book_title_author", columnNames = {"title", "author"})
-		}
-)
-public class Book {
+public class BookResponse {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@Column(nullable = false, length = 150)
 	private String title;
-
-	@Column(nullable = false, length = 100)
 	private String author;
-
-	@Column(nullable = false, length = 20)
 	private String isbn;
-
-	@Column(nullable = false)
 	private Integer publishedYear;
-
-	@Column(nullable = false)
 	private Integer availableCopies;
+
+	public static BookResponse from(Book book) {
+		BookResponse response = new BookResponse();
+		response.setId(book.getId());
+		response.setTitle(book.getTitle());
+		response.setAuthor(book.getAuthor());
+		response.setIsbn(book.getIsbn());
+		response.setPublishedYear(book.getPublishedYear());
+		response.setAvailableCopies(book.getAvailableCopies());
+		return response;
+	}
 
 	public Long getId() {
 		return id;
