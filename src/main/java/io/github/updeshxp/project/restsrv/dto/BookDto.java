@@ -33,6 +33,9 @@ public class BookDto {
 
 	private Boolean isReviewPublished = false;
 
+	@Size(max = 300, message = "Description must be at most 300 characters")
+	private String description = null;
+
 	@NotNull(message = "Available copies are required")
 	@Min(value = 0, message = "Available copies cannot be negative")
 	private Integer availableCopies;
@@ -46,6 +49,7 @@ public class BookDto {
 		dto.setPublishedYear(book.getPublishedYear());
 		dto.setReviewPublished(book.getReviewPublished());
 		dto.setAvailableCopies(book.getAvailableCopies());
+		dto.setDescription(book.getDescription());
 		return dto;
 	}
 
@@ -95,6 +99,14 @@ public class BookDto {
 
 	public void setReviewPublished(Boolean isReviewPublished) {
 		this.isReviewPublished = isReviewPublished;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Integer getAvailableCopies() {

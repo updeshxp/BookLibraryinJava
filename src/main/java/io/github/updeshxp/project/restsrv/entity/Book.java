@@ -39,6 +39,9 @@ public class Book {
 	@Column(nullable = false)
 	private Integer availableCopies;
 
+	@Column()
+	private String description;
+
 	@Column(nullable = false)
 	private Boolean isReviewPublished;
 
@@ -64,6 +67,14 @@ public class Book {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getIsbn() {
