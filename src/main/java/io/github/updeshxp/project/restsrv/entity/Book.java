@@ -39,6 +39,9 @@ public class Book {
 	@Column(nullable = false)
 	private Integer availableCopies;
 
+	@Column(nullable = false)
+	private Boolean isReviewPublished;
+
 	public Long getId() {
 		return id;
 	}
@@ -69,6 +72,14 @@ public class Book {
 
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
+	}
+
+	public Boolean getReviewPublished() {
+		return isReviewPublished;
+	}
+
+	public void setReviewPublished(boolean isReviewPublished) {
+		this.isReviewPublished = isReviewPublished;
 	}
 
 	public Year getPublishedYear() {

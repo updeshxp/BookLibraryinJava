@@ -79,6 +79,7 @@ public class BookService {
 		book.setAuthor(request.getAuthor().trim());
 		book.setIsbn(request.getIsbn().trim());
 		book.setPublishedYear(request.getPublishedYear());
+		book.setReviewPublished(request.getReviewPublished());
 		book.setAvailableCopies(request.getAvailableCopies());
 	}
 }

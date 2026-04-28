@@ -31,6 +31,8 @@ public class BookDto {
 	@Past(message = "Published year should be in the past")
 	private Year publishedYear;
 
+	private Boolean isReviewPublished = false;
+
 	@NotNull(message = "Available copies are required")
 	@Min(value = 0, message = "Available copies cannot be negative")
 	private Integer availableCopies;
@@ -42,6 +44,7 @@ public class BookDto {
 		dto.setAuthor(book.getAuthor());
 		dto.setIsbn(book.getIsbn());
 		dto.setPublishedYear(book.getPublishedYear());
+		dto.setReviewPublished(book.getReviewPublished());
 		dto.setAvailableCopies(book.getAvailableCopies());
 		return dto;
 	}
@@ -84,6 +87,14 @@ public class BookDto {
 
 	public void setPublishedYear(Year publishedYear) {
 		this.publishedYear = publishedYear;
+	}
+
+	public Boolean getReviewPublished() {
+		return isReviewPublished;
+	}
+
+	public void setReviewPublished(Boolean isReviewPublished) {
+		this.isReviewPublished = isReviewPublished;
 	}
 
 	public Integer getAvailableCopies() {
