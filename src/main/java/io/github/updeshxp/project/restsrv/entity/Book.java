@@ -43,7 +43,7 @@ public class Book {
 	private String description;
 
 	@Column(nullable = false)
-	private Boolean isReviewPublished;
+	private Boolean reviewPublished;
 
 	public Long getId() {
 		return id;
@@ -86,11 +86,11 @@ public class Book {
 	}
 
 	public Boolean getReviewPublished() {
-		return isReviewPublished;
+		return reviewPublished;
 	}
 
-	public void setReviewPublished(boolean isReviewPublished) {
-		this.isReviewPublished = isReviewPublished;
+	public void setReviewPublished(boolean reviewPublished) {
+		this.reviewPublished = reviewPublished;
 	}
 
 	public Year getPublishedYear() {

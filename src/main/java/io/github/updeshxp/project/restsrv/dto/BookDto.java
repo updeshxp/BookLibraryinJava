@@ -31,7 +31,7 @@ public class BookDto {
 	@Past(message = "Published year should be in the past")
 	private Year publishedYear;
 
-	private Boolean isReviewPublished = false;
+	private Boolean reviewPublished = false;
 
 	@Size(max = 300, message = "Description must be at most 300 characters")
 	private String description = null;
@@ -94,11 +94,11 @@ public class BookDto {
 	}
 
 	public Boolean getReviewPublished() {
-		return isReviewPublished;
+		return reviewPublished;
 	}
 
-	public void setReviewPublished(Boolean isReviewPublished) {
-		this.isReviewPublished = isReviewPublished;
+	public void setReviewPublished(Boolean reviewPublished) {
+		this.reviewPublished = reviewPublished;
 	}
 
 	public String getDescription() {
