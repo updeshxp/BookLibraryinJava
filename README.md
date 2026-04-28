@@ -44,9 +44,21 @@ Base path: `/api/books`
   "author": "Robert C. Martin",
   "isbn": "9780132350884",
   "publishedYear": 2008,
-  "availableCopies": 5
+  "availableCopies": 5,
+  "description": "A handbook of agile software craftsmanship.",
+  "reviewPublished": true
 }
 ```
+
+### Request Fields
+
+- `title` (string, required, max 150)
+- `author` (string, required, max 100)
+- `isbn` (string, required, 10-20 chars, digits/X/hyphen)
+- `publishedYear` (number/year, required, must be in the past)
+- `availableCopies` (number, required, minimum 0)
+- `description` (string, optional, max 300)
+- `reviewPublished` (boolean, optional, default `false`)
 
 ## Tech Stack
 
